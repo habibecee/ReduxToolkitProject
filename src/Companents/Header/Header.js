@@ -1,8 +1,9 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removeToken } from "../../Redux/AuthSlice";
+import { Link } from "react-router-dom";
 
-const Header = () => {
+const Header = (props) => {
 	const authState = useSelector((state) => state.authState);
 	const categoryState = useSelector((state) => state.categoryState);
 	const dispatch = useDispatch();
@@ -55,7 +56,7 @@ const Header = () => {
 										<>
 											<li>
 												<a href="/user/dashboard" className="title hidden-xs">
-													My Account
+													My Account {authState.customerId}
 												</a>
 											</li>
 											<li className="hidden-xs">|</li>
@@ -86,10 +87,10 @@ const Header = () => {
 									)}
 
 									<li>
-										<a href="/cart" className="title">
+										<Link to="/cart" className="title">
 											<i className="fa fa-shopping-cart"></i>
 											<sup className="cart-quantity"></sup>
-										</a>
+										</Link>
 									</li>
 								</ul>
 							</div>

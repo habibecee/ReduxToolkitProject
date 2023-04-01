@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import BreadCrumb from "../../Companents/BreadCrumb/BreadCrumb";
+import CartItem from "./Companents/CartItem";
 
 const Cart = (props) => {
 	const params = useParams();
@@ -49,83 +50,14 @@ const Cart = (props) => {
 													</tr>
 												</thead>
 												<tbody>
-													<tr>
-														<td>
-															<a href="#">
-																<img src="/images/cart_product_1.png" alt="" />
-															</a>
-															<span>
-																<a href="#">Google Pixle</a>
-															</span>
-														</td>
-														<td>$1100</td>
-														<td>
-															<div className="product-quantity">
-																<div className="quantity">
-																	<input
-																		type="number"
-																		className="input-text qty text"
-																		step="1"
-																		min="1"
-																		max="6"
-																		name="quantity"
-																		value="1"
-																		title="Qty"
-																		size="4"
-																		pattern="[0-9]*"
-																	/>
-																</div>
-															</div>
-														</td>
-														<td>$1100.00</td>
-														<th scope="row">
-															<a href="#" className="btn-close">
-																<i className="fa fa-times-circle-o"></i>
-															</a>
-														</th>
-													</tr>
-													<tr>
-														<td>
-															<a href="#">
-																<img src="/images/cart_product_2.png" alt="" />
-															</a>
-															<span>
-																<a href="#">Apple iPhone 6S </a>
-															</span>
-														</td>
-														<td>$1300</td>
-														<td>
-															<div className="product-quantity">
-																<div className="quantity">
-																	<input
-																		type="number"
-																		className="input-text qty text "
-																		step="1"
-																		min="1"
-																		max="6"
-																		name="quantity"
-																		value="1"
-																		title="Qty"
-																		size="4"
-																		pattern="[0-9]*"
-																	/>
-																</div>
-															</div>
-														</td>
-														<td>$1300.00</td>
-														<th scope="row">
-															<a href="#" className="btn-close">
-																<i className="fa fa-times-circle-o"></i>
-															</a>
-														</th>
-													</tr>
+													<CartItem />
 												</tbody>
 											</table>
 										</div>
 									</div>
 								</div>
 							</div>
-							<a href="#" className="btn-link">
+							<a href="/" className="btn-link">
 								<i className="fa fa-angle-left"></i> back to shopping
 							</a>
 						</div>
@@ -177,7 +109,7 @@ const Cart = (props) => {
 									</div>
 								</div>
 							</div>
-							<div className="box mb30">
+							{/* <div className="box mb30">
 								<div className="box-head">
 									<h3 className="head-title">Coupons &amp; Offers</h3>
 								</div>
@@ -201,7 +133,7 @@ const Cart = (props) => {
 										</div>
 									</form>
 								</div>
-							</div>
+							</div> */}
 						</div>
 					</div>
 				</div>

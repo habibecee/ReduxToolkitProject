@@ -18,14 +18,15 @@ export const AuthSlice = createSlice({
 			localStorage.setItem("customerId", action.payload.customerId);
 			state.token = action.payload.token;
 			state.customerId = action.payload.customerId;
+			state.customerDetails = action.payload.customerId;
 		},
 
 		removeToken: (state, action) => {
 			//TODO -DOLDURULACAK
 			localStorage.removeItem("token");
-			state.token = null;
-			state.customerId = null;
-			state.customerDetails = null;
+			localStorage.removeItem("customerId");
+			localStorage.removeItem("customerDetails");
+			localStorage.removeItem("cartTokenValue");
 		},
 
 		setCustomerDetails: (state, action) => {

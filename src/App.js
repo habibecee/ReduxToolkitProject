@@ -10,22 +10,42 @@ import Cart from "./Pages/Cart/Cart";
 import { useSelector, useDispatch } from "react-redux";
 import useApi from "./Hooks/useApi";
 import { setCategories } from "./Redux/CategorySlice";
+import { setTokenValue } from "./Redux/CartSlice";
 
 function App() {
-	const authState = useSelector((state) => state.authState);
 	const api = useApi();
 	const dispatch = useDispatch();
 	const categoryState = useSelector((state) => state.categoryState);
 	console.log(categoryState);
+	const authState = useSelector((state) => state.authState);
+	const cartState = useSelector((state) => state.cartState);
 
-	if (authState.token && authState.customerId && !authState.customerDetails) {
+	if (!cartState.tokenValue) {
+		const postData = {
+			localeCode: "en_US",
+		};
 		api
-			.get("/api/v2/shop/customers/" + authState.customerId)
+			.post("shop/orders", postData)
 			.then((response) => {
-				console.log("CUSTOMER RESPONSE", response);
+				console.log("CART RESPONSE", response);
+				dispatch(
+					setTokenValue({
+						tokenValue: response.data.tokenValue,
+						id: response.data.id,
+					})
+				);
 			})
-			.catch((err) => console.log("CUSTOMER ERROR", err));
+			.catch((err) => console.log("CART ERROR", err));
 	}
+
+	// if (authState.token && authState.customerId && !authState.customerDetails) {
+	// 	api
+	// 		.get("shop/customers" + authState.customerId)
+	// 		.then((response) => {
+	// 			console.log("CUSTOMER RESPONSE", response);
+	// 		})
+	// 		.catch((err) => console.log("CUSTOMER ERROR", err));
+	// }
 
 	if (categoryState.categories === null) {
 		api
