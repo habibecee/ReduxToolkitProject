@@ -1,6 +1,6 @@
 <h1> REDUX TOOLKIT PROJECT </h1></br>
 
-<h2> This App created with React and ReduxToolkit, used real Api. </h2>  </br>
+<h2> This App created with React and ReduxToolkit, used Sylius Api. </h2>  </br>
 
 <h3> WHICH LIBRARIES AND PACKAGES ARE USED IN THE APP? </h3> </br>
 

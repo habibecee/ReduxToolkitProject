@@ -1,16 +1,22 @@
 import React from "react";
 
 const ProductItem = (props) => {
+	console.log("PRODUCT ITEM PROPS", props.product);
 	return (
 		<div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb30">
 			<div className="product-block">
 				<div className="product-img">
-					<img src="/images/product_img_1.png" alt="" />
+					<img
+						src={
+							"https://ecommerce-api.udemig.dev" + props.product.images[0].path
+						}
+						alt=""
+					/>
 				</div>
 				<div className="product-content">
 					<h5>
 						<a href="#" className="product-title">
-							Google Pixel <strong>(128GB, Black)</strong>
+							{props.product.name}
 						</a>
 					</h5>
 					<div className="product-meta">

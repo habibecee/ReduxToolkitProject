@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import BreadCrumb from "../../Companents/BreadCrumb/BreadCrumb";
 import useApi from "../../Hooks/useApi";
+import { setToken } from "../../Redux/AuthSlice";
 
 const Login = (props) => {
 	const params = useParams();
@@ -9,6 +11,7 @@ const Login = (props) => {
 	const [password, setPassword] = useState("");
 
 	const api = useApi();
+	const dispatch = useDispatch();
 
 	const breadcrumb = [
 		{
@@ -28,6 +31,20 @@ const Login = (props) => {
 			.post("/shop/authentication-token", postData)
 			.then((response) => {
 				console.log("RESPONSE", response);
+
+				const customerId = response.data.customer.replace(
+					"api/v2/shop/customers/",
+					""
+				);
+
+				dispatch(
+					setToken({
+						token: response.data.token,
+						customerId,
+					})
+				);
+
+				document.location.replace("/");
 			})
 			.catch((err) => {
 				console.log("ERROR", err);

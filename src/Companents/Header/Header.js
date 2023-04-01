@@ -1,6 +1,11 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { removeToken } from "../../Redux/AuthSlice";
 
 const Header = () => {
+	const authState = useSelector((state) => state.authState);
+	const categoryState = useSelector((state) => state.categoryState);
+	const dispatch = useDispatch();
 	return (
 		<>
 			<div className="top-header">
@@ -46,17 +51,40 @@ const Header = () => {
 						<div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 							<div className="account-section">
 								<ul>
-									<li>
-										<a href="/auth/login" className="title hidden-xs">
-											Login
-										</a>
-									</li>
-									<li className="hidden-xs">|</li>
-									<li>
-										<a href="/auth/register" className="title hidden-xs">
-											Register
-										</a>
-									</li>
+									{authState.token ? (
+										<>
+											<li>
+												<a href="/user/dashboard" className="title hidden-xs">
+													My Account
+												</a>
+											</li>
+											<li className="hidden-xs">|</li>
+											<li>
+												<a
+													href="/"
+													onClick={(event) => dispatch(removeToken())}
+													className="title hidden-xs"
+												>
+													Logout
+												</a>
+											</li>
+										</>
+									) : (
+										<>
+											<li>
+												<a href="/auth/login" className="title hidden-xs">
+													Login
+												</a>
+											</li>
+											<li className="hidden-xs">|</li>
+											<li>
+												<a href="/auth/register" className="title hidden-xs">
+													Register
+												</a>
+											</li>
+										</>
+									)}
+
 									<li>
 										<a href="/cart" className="title">
 											<i className="fa fa-shopping-cart"></i>
@@ -80,12 +108,15 @@ const Header = () => {
 										<li className="has-sub">
 											<a href="/category/test">Categories</a>
 											<ul>
-												<li>
-													<a href="/category/categoryOne">Category 1</a>
-												</li>
-												<li>
-													<a href="/category/categoryTwo">Category 2</a>
-												</li>
+												{categoryState.categories?.map((category, index) => {
+													return (
+														<li key={index}>
+															<a href={"/category/" + category.code}>
+																{category.name}{" "}
+															</a>
+														</li>
+													);
+												})}
 											</ul>
 										</li>
 										<li className="has-sub">
