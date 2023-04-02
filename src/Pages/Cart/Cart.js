@@ -3,14 +3,33 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import BreadCrumb from "../../Companents/BreadCrumb/BreadCrumb";
 import CartItem from "./Companents/CartItem";
+import Loading from "./Assets/ZUiY.gif";
 
 const Cart = (props) => {
 	const params = useParams();
 	const cartState = useSelector((state) => state.cartState);
 
+	if (cartState.id === null) {
+		return (
+			<div className="space-medium">
+				<div className="container">
+					<div className="row">
+						<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+							<img
+								src={Loading}
+								alt=""
+								style={{ width: "500px", height: "500px" }}
+							/>
+						</div>
+					</div>
+				</div>
+			</div>
+		);
+	}
+
 	const CartItems = [];
 
-	cartState.items.map((item, index) => {
+	cartState.items?.map((item, index) => {
 		CartItems.push(<CartItem key={index} {...item} />);
 	});
 
@@ -31,7 +50,7 @@ const Cart = (props) => {
 			<div className="space-medium">
 				<div className="container">
 					<div className="row">
-						<div className="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+						<div className="col-lg-9 col-md-9 col-sm-9 col-xs-12">
 							<div className="box">
 								<div className="box-head">
 									<h3 className="head-title">My Cart (02)</h3>
@@ -48,11 +67,13 @@ const Cart = (props) => {
 														<th>
 															<span>Price</span>
 														</th>
-														<th>
-															<span>Quantity</span>
-														</th>
+
 														<th>
 															<span>Total</span>
+															<span>(VAT)</span>
+														</th>
+														<th>
+															<span>Quantity</span>
 														</th>
 														<th></th>
 													</tr>
@@ -67,7 +88,7 @@ const Cart = (props) => {
 								<i className="fa fa-angle-left"></i> back to shopping
 							</a>
 						</div>
-						<div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+						<div className="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 							<div className="box mb30">
 								<div className="box-head">
 									<h3 className="head-title">Price Details</h3>
@@ -75,13 +96,22 @@ const Cart = (props) => {
 								<div className="box-body">
 									<div className=" table-responsive">
 										<div className="pay-amount ">
-											<table className="table mb20">
+											<table className="table mb30">
 												<tbody>
 													<tr>
 														<th>
-															<span>Price (2 items)</span>
+															<span>
+																Price ({cartState.items.length} items)
+															</span>
 														</th>
-														<td>$2400</td>
+														<td>
+															{cartState.items.reduce(
+																(currentTotal, item) =>
+																	currentTotal + item.subtotal,
+																0
+															)}{" "}
+															{cartState.currencyCode}
+														</td>
 													</tr>
 													<tr>
 														<th>
@@ -109,13 +139,16 @@ const Cart = (props) => {
 												</tbody>
 											</table>
 										</div>
-										<button className="btn btn-primary btn-block">
-											Proceed To Checkout
+										<button
+											className="btn btn-primary btn-block"
+											style={{ marginTop: "115px" }}
+										>
+											Checkout
 										</button>
 									</div>
 								</div>
 							</div>
-							{/* <div className="box mb30">
+							<div className="box mb30">
 								<div className="box-head">
 									<h3 className="head-title">Coupons &amp; Offers</h3>
 								</div>
@@ -139,7 +172,7 @@ const Cart = (props) => {
 										</div>
 									</form>
 								</div>
-							</div> */}
+							</div>
 						</div>
 					</div>
 				</div>

@@ -13,7 +13,6 @@ const ProductItem = (props) => {
 	const onAddToCartClick = (event) => {
 		event.preventDefault();
 		console.log("ADD TO CART CLICKED", props.product);
-		alert("CART BUTONUNA TIKLANDI");
 
 		const productVariant = props.product.defaultVariant.replace(
 			"/api/v2/shop/product-variants/",
@@ -60,13 +59,12 @@ const ProductItem = (props) => {
 						<span className="offer-price">20%off</span>
 					</div>
 					<div className="shopping-btn">
-						<a
-							href="#"
+						<button
 							onClick={onAddToCartClick}
-							className="product-btn btn-cart"
+							className="product-btn btn-cart btn-link text-center"
 						>
 							<i className="fa fa-shopping-cart"></i>
-						</a>
+						</button>
 					</div>
 				</div>
 			</div>

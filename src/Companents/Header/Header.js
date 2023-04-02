@@ -31,10 +31,10 @@ const Header = (props) => {
 			<div className="header-wrapper">
 				<div className="container">
 					<div className="row">
-						<div className="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-							<div className="logo">
+						<div className="col-lg-3 col-md-3 col-sm-3 col-xs-12 ">
+							<div className="logo" style={{ width: "30%", height: "30%" }}>
 								<a href="/">
-									<img src="/images/logo.png" alt="" />
+									<img src="/images/logo2.png" alt="" />
 								</a>
 							</div>
 						</div>
@@ -89,8 +89,14 @@ const Header = (props) => {
 
 									<li>
 										<Link to="/cart" className="title">
-											<i className="fa fa-shopping-cart"></i>
-											<sup className="cart-quantity">
+											<i className="fa fa-shopping-cart"> </i>
+											<sup
+												className="cart-quantity"
+												style={{
+													borderRadius: "50%",
+													marginLeft: "3px",
+												}}
+											>
 												{cartState.items.length}
 											</sup>
 										</Link>
