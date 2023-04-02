@@ -16,8 +16,14 @@ export const CartSlice = createSlice({
 			state.tokenValue = action.payload.tokenValue;
 			state.id = action.payload.id;
 		},
+
+		updateFullCart: (state, action) => {
+			//BÜTÜN STATE YENİ BAŞTAN OLUŞTURULABİLSİN DİYE BU ŞEKİLDE KULLANILMALI
+			console.log("UPDATE FULL CART:", action);
+			return action.payload;
+		},
 	},
 });
 
 export default CartSlice.reducer;
-export const { setTokenValue } = CartSlice.actions;
+export const { setTokenValue, updateFullCart } = CartSlice.actions;

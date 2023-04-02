@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 const Header = (props) => {
 	const authState = useSelector((state) => state.authState);
 	const categoryState = useSelector((state) => state.categoryState);
+	const cartState = useSelector((state) => state.cartState);
 	const dispatch = useDispatch();
 	return (
 		<>
@@ -89,7 +90,9 @@ const Header = (props) => {
 									<li>
 										<Link to="/cart" className="title">
 											<i className="fa fa-shopping-cart"></i>
-											<sup className="cart-quantity"></sup>
+											<sup className="cart-quantity">
+												{cartState.items.length}
+											</sup>
 										</Link>
 									</li>
 								</ul>

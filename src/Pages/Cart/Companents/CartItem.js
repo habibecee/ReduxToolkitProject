@@ -13,7 +13,7 @@ const CartItem = (props) => {
 					<img src="/images/cart_product_1.png" alt="" />
 				</a>
 				<span>
-					<a href="#">Google Pixel</a>
+					<a href="#">{props.productName}</a>
 				</span>
 			</td>
 			<td>$1100</td>
@@ -27,7 +27,7 @@ const CartItem = (props) => {
 							min="1"
 							max="10"
 							name="quantity"
-							defaultValue="1"
+							defaultValue={props.quantity}
 							title="Qty"
 							size="4"
 							pattern="[0-9]*"
@@ -36,11 +36,11 @@ const CartItem = (props) => {
 					</div>
 				</div>
 			</td>
-			<td>$1100.00</td>
+			<td>{props.total}</td>
 			<th scope="row">
-				<button className="btn-close">
+				<a href="#" className="btn-close">
 					<i className="fa fa-times-circle-o"></i>
-				</button>
+				</a>
 			</th>
 		</tr>
 	);

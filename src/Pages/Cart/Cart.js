@@ -1,10 +1,18 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import BreadCrumb from "../../Companents/BreadCrumb/BreadCrumb";
 import CartItem from "./Companents/CartItem";
 
 const Cart = (props) => {
 	const params = useParams();
+	const cartState = useSelector((state) => state.cartState);
+
+	const CartItems = [];
+
+	cartState.items.map((item, index) => {
+		CartItems.push(<CartItem key={index} {...item} />);
+	});
 
 	const breadcrumb = [
 		{
@@ -49,9 +57,7 @@ const Cart = (props) => {
 														<th></th>
 													</tr>
 												</thead>
-												<tbody>
-													<CartItem />
-												</tbody>
+												<tbody>{CartItems}</tbody>
 											</table>
 										</div>
 									</div>

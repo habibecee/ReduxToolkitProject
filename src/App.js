@@ -10,7 +10,7 @@ import Cart from "./Pages/Cart/Cart";
 import { useSelector, useDispatch } from "react-redux";
 import useApi from "./Hooks/useApi";
 import { setCategories } from "./Redux/CategorySlice";
-import { setTokenValue } from "./Redux/CartSlice";
+import { setTokenValue, updateFullCart } from "./Redux/CartSlice";
 
 function App() {
 	const api = useApi();
@@ -34,6 +34,14 @@ function App() {
 						id: response.data.id,
 					})
 				);
+			})
+			.catch((err) => console.log("CART ERROR", err));
+	} else if (!cartState.id) {
+		api
+			.get(`shop/orders/${cartState.tokenValue}`)
+			.then((response) => {
+				console.log("CART RESPONSE", response);
+				dispatch(updateFullCart(response.data));
 			})
 			.catch((err) => console.log("CART ERROR", err));
 	}
