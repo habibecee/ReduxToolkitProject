@@ -1,9 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import BreadCrumb from "../../Companents/BreadCrumb/BreadCrumb";
 import CartItem from "./Companents/CartItem";
-import Loading from "./Assets/ZUiY.gif";
+import Loading from "../../Assets/ZUiY.gif";
 
 const Cart = (props) => {
 	const params = useParams();
@@ -53,7 +53,7 @@ const Cart = (props) => {
 						<div className="col-lg-9 col-md-9 col-sm-9 col-xs-12">
 							<div className="box">
 								<div className="box-head">
-									<h3 className="head-title">My Cart (02)</h3>
+									<h3 className="head-title">My Cart </h3>
 								</div>
 								<div className="box-body">
 									<div className="table-responsive">
@@ -115,10 +115,25 @@ const Cart = (props) => {
 													</tr>
 													<tr>
 														<th>
+															<span>Tax Totals</span>
+														</th>
+														<td>
+															{cartState.taxTotal} {cartState.currencyCode}
+														</td>
+													</tr>
+													<tr>
+														<th>
 															<span>Delivery Charges</span>
 														</th>
 														<td>
-															<strong className="text-green">Free</strong>
+															{cartState.shippingTotal === 0 ? (
+																<strong className="text-green">Free</strong>
+															) : (
+																<>
+																	{cartState.shippingTotal}{" "}
+																	{cartState.currencyCode}
+																</>
+															)}
 														</td>
 													</tr>
 												</tbody>
@@ -133,18 +148,19 @@ const Cart = (props) => {
 															</span>
 														</th>
 														<td style={{ fontWeight: "700", color: "#1c1e1e" }}>
-															$2400
+															{cartState.total} {cartState.currencyCode}
 														</td>
 													</tr>
 												</tbody>
 											</table>
 										</div>
-										<button
+										<Link
+											to="/checkout"
 											className="btn btn-primary btn-block"
-											style={{ marginTop: "115px" }}
+											// style={{ marginTop: "115px" }}
 										>
 											Checkout
-										</button>
+										</Link>
 									</div>
 								</div>
 							</div>

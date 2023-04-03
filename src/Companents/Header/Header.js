@@ -13,16 +13,16 @@ const Header = (props) => {
 			<div className="top-header">
 				<div className="container">
 					<div className="row">
-						<div className="col-lg-7 col-md-7 col-sm-6 hidden-xs">
+						<div className="col-lg-8 col-md-8 col-sm-6 hidden-xs">
 							<p className="top-text">Flexible Delivery, Fast Delivery.</p>
 						</div>
-						<div className="col-lg-5 col-md-5 col-sm-6 col-xs-12">
+						<div className="col-lg-4 col-md-4 col-sm-6 col-xs-12">
 							<ul>
 								<li>+180-123-4567</li>
 								<li>info@demo.com</li>
-								<li>
+								{/* <li>
 									<a href="/">Help</a>
-								</li>
+								</li> */}
 							</ul>
 						</div>
 					</div>
@@ -34,11 +34,11 @@ const Header = (props) => {
 						<div className="col-lg-3 col-md-3 col-sm-3 col-xs-12 ">
 							<div className="logo" style={{ width: "30%", height: "30%" }}>
 								<a href="/">
-									<img src="/images/logo2.png" alt="" />
+									<img src="/images/logo6.png" alt="" />
 								</a>
 							</div>
 						</div>
-						<div className="col-lg-5 col-md-5 col-sm-5 col-xs-12 ">
+						<div className="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
 							<div className="search-bg">
 								<input
 									type="text"
@@ -50,7 +50,7 @@ const Header = (props) => {
 								</button>
 							</div>
 						</div>
-						<div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+						<div className="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 							<div className="account-section">
 								<ul>
 									{authState.token ? (

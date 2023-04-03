@@ -11,7 +11,7 @@ export const CartSlice = createSlice({
 	initialState,
 	reducers: {
 		setTokenValue: (state, action) => {
-			console.log("SET TOKEN VALUE:", action);
+			// console.log("SET TOKEN VALUE:", action);
 			localStorage.setItem("cartTokenValue", action.payload.tokenValue);
 			state.tokenValue = action.payload.tokenValue;
 			state.id = action.payload.id;
@@ -19,7 +19,7 @@ export const CartSlice = createSlice({
 
 		updateFullCart: (state, action) => {
 			//BÜTÜN STATE YENİ BAŞTAN OLUŞTURULABİLSİN DİYE BU ŞEKİLDE KULLANILMALI
-			console.log("UPDATE FULL CART:", action);
+			// console.log("UPDATE FULL CART:", action);
 			return action.payload;
 		},
 	},

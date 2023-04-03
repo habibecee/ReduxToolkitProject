@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 
 const Category = (props) => {
 	const params = useParams();
+	console.log("CATEGORY PAGE PARAMS", params);
 	const api = useApi();
 	const [products, setProducts] = useState([]);
 
@@ -16,12 +17,12 @@ const Category = (props) => {
 		urlQueryData["order[code]"] = "asc";
 		urlQueryData["order[createdAt]"] = "asc";
 
-		console.log("URL QUERY DATA", urlQueryData);
+		// console.log("URL QUERY DATA", urlQueryData);
 
 		api
 			.get("shop/products", { params: urlQueryData })
 			.then((response) => {
-				console.log("PRODUCTS RESPONSE", response);
+				// console.log("PRODUCTS RESPONSE", response);
 				setProducts(response.data);
 			})
 			.catch((err) => console.log("PRODUCTS ERROR", err));

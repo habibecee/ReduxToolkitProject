@@ -4,9 +4,10 @@ import useApi from "../../../../Hooks/useApi";
 import { updateFullCart } from "../../../../Redux/CartSlice";
 
 const ProductItem = (props) => {
-	console.log("PRODUCT ITEM PROPS", props.product);
+	console.log("PRODUCT ITEM PROPS", props);
 
 	const cartState = useSelector((state) => state.cartState);
+	// console.log("CART STATE", cartState);
 	const api = useApi();
 	const dispatch = useDispatch();
 
@@ -45,13 +46,16 @@ const ProductItem = (props) => {
 				</div>
 				<div className="product-content">
 					<h5>
-						<a href="#" className="product-title">
+						<a
+							href={"/product/" + props.product.code}
+							className="product-title"
+						>
 							{props.product.name}
 						</a>
 					</h5>
 					<div className="product-meta">
 						<a href="#" className="product-price">
-							$1100
+							{cartState.unitPrice}
 						</a>
 						<a href="#" className="discounted-price">
 							$1400

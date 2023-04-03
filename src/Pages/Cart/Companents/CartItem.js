@@ -6,19 +6,56 @@ import { updateFullCart } from "../../../Redux/CartSlice";
 const CartItem = (props) => {
 	console.log("CART ITEM PROPS", props);
 	const cartState = useSelector((state) => state.cartState);
-	console.log("CART STATE", cartState);
+	// console.log("CART STATE", cartState);
 	const api = useApi();
 	const dispatch = useDispatch();
 
+	// cartState.items?.map((item, index) => {
+	// 	api
+	// 		.get(`shop/product-images/${item.id}`)
+	// 		.then((response) => {
+	// 			console.log(response);
+	// 		})
+	// 		.catch((err) => console.log("PRODUCT IMAGES ERROR", err));
+	// });
+
+	const productVariantFirst = props.variant.replace(
+		"/api/v2/shop/product-variants/",
+		`/product/`
+	);
+
+	const productVariantLast = productVariantFirst.replace("-variant-0", "");
+
 	const onQuantityChange = (event) => {
-		console.log("QUANTITY CHANGED", event.target.value);
+		// console.log("QUANTITY CHANGED", event.target.value);
+
+		const patchData = {
+			quantity: parseInt(event.target.value),
+		};
+
+		const patchApi = api.create({
+			baseURL: api.defaults.baseURL,
+			headers: {
+				"content-type": "application/merge-patch+json",
+				accept: "application/json",
+				authorization: api.defaults.headers.common["Authorization"],
+			},
+		});
+
+		patchApi
+			.patch(`shop/orders/${cartState.tokenValue}/items/${props.id}`, patchData)
+			.then((response) => {
+				console.log("PATCH RESPONSE", response);
+				dispatch(updateFullCart(response.data));
+			})
+			.catch((err) => console.log("PATCH ERROR", err));
 	};
 
 	const onDelete = (event) => {
 		api
 			.delete(`shop/orders/${cartState.tokenValue}/items/${props.id}`)
 			.then((response) => {
-				console.log("DELETE RESPONSE", response);
+				// console.log("DELETE RESPONSE", response);
 
 				api
 					.get(`shop/orders/${cartState.tokenValue}`)
@@ -32,11 +69,15 @@ const CartItem = (props) => {
 	return (
 		<tr>
 			<td>
-				<a href="#">
-					<img src="/images/cart_product_1.png" alt="" />
+				<a href={productVariantLast}>
+					<img
+						src="/images/cart_product_4.png"
+						alt=""
+						style={{ width: "40px", height: "40px", marginRight: "20px" }}
+					/>
 				</a>
 				<span>
-					<a href="#">{props.productName}</a>
+					<a href={productVariantLast}>{props.productName}</a>
 				</span>
 			</td>
 			<td>
@@ -46,7 +87,7 @@ const CartItem = (props) => {
 			</td>
 
 			<td>
-				{props.total} &nbsp;
+				{props.subtotal} &nbsp;
 				{cartState.currencyCode}{" "}
 			</td>
 			<td>

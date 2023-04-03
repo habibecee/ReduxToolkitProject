@@ -36,3 +36,13 @@
     transform: rotate(360deg);
   }
 } */
+
+.GoBack {
+	padding-top: 50px !important;
+	transition: 0.5s all;
+	font-weight: 600 !important;
+}
+
+.GoBack:hover {
+	color: #2cb051 !important;
+}

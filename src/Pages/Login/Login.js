@@ -30,7 +30,7 @@ const Login = (props) => {
 		api
 			.post("/shop/authentication-token", postData)
 			.then((response) => {
-				console.log("RESPONSE", response);
+				// console.log("RESPONSE", response);
 
 				const customerId = response.data.customer.replace(
 					"api/v2/shop/customers/",
@@ -47,7 +47,7 @@ const Login = (props) => {
 				document.location.replace("/");
 			})
 			.catch((err) => {
-				console.log("ERROR", err);
+				// console.log("ERROR", err);
 				alert("An error occured" + err);
 			});
 	};

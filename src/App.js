@@ -1,5 +1,8 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import { useSelector, useDispatch } from "react-redux";
+
 import Footer from "./Companents/Footer/Footer";
 import Header from "./Companents/Header/Header";
 import Home from "./Pages/Home/Home";
@@ -7,16 +10,18 @@ import Category from "./Pages/Category/Category";
 import Login from "./Pages/Login/Login";
 import Register from "./Pages/Register/Register";
 import Cart from "./Pages/Cart/Cart";
-import { useSelector, useDispatch } from "react-redux";
+import Checkout from "./Pages/Checkout/Checkout";
+
 import useApi from "./Hooks/useApi";
 import { setCategories } from "./Redux/CategorySlice";
 import { setTokenValue, updateFullCart } from "./Redux/CartSlice";
+import ProductDetails from "./Pages/ProductDetails/ProductDetails";
 
 function App() {
 	const api = useApi();
 	const dispatch = useDispatch();
 	const categoryState = useSelector((state) => state.categoryState);
-	console.log(categoryState);
+	console.log("categoryState", categoryState);
 	const authState = useSelector((state) => state.authState);
 	const cartState = useSelector((state) => state.cartState);
 
@@ -76,9 +81,13 @@ function App() {
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="category/:taxon_code" element={<Category />} />
+					<Route path="/product">
+						<Route path=":productCode" element={<ProductDetails />} />
+					</Route>
 					<Route path="auth/login" element={<Login />} />
 					<Route path="auth/register" element={<Register />} />
 					<Route path="/cart" element={<Cart />} />
+					<Route path="/checkout" element={<Checkout />} />
 				</Routes>
 				<Footer />
 			</BrowserRouter>

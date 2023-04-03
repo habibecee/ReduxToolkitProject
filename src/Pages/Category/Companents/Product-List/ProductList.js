@@ -2,17 +2,13 @@ import React from "react";
 import ProductItem from "../Product-Item/ProductItem";
 
 const ProductList = (props) => {
-	console.log("PRODUCTS LIST PROPS", props.products);
+	console.log("PRODUCTS LIST PROPS", props);
 
 	const productCompanents = [];
 
 	props.products?.map((item, index) => {
 		productCompanents.push(<ProductItem key={index} product={item} />);
 	});
-
-	// for (let i = 0; i < 5; i++) {
-	// 	productCompanents.push(<ProductItem key={i} />);
-	// }
 
 	return (
 		<div className="col-lg-9 col-md-9 col-sm-8 col-xs-12">
