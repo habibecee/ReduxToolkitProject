@@ -79,7 +79,9 @@ const Footer = () => {
 						</div>
 						<div className=" col-lg-3 col-md-3 col-sm-3 col-xs-12">
 							<div className="footer-widget">
-								<h3 className="footer-title">Connect With Us</h3>
+								<h3 className="footer-title" id="connect-with-us">
+									Connect With Us
+								</h3>
 								<div className="ft-social">
 									<span>
 										<a href="#" className="btn-social btn-facebook">

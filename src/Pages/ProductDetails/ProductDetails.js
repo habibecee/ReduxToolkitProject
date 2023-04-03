@@ -488,7 +488,7 @@ const ProductDetail = (props) => {
 					</div>
 				</div>
 
-				<div className="container">
+				{/* <div className="container">
 					<div className="row">
 						<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<div className="box-head">
@@ -629,7 +629,7 @@ const ProductDetail = (props) => {
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> */}
 			</div>
 		</>
 	);

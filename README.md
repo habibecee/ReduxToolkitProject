@@ -11,11 +11,19 @@
 3. REAL API </br>
 4. REDUX-TOOLKIT </br>
 5. AXIOS </br>
-6. OWL CAROUSEL </br>
-   .</br>
-   .</br>
-   . </p> </br>
+6. OWL CAROUSEL
+</p> </br>
+
+<strong> <p>
+
+This app have functions of all of an E-commerce app functions.</br> You can add a product to cart, you can increase the number of products and see all of products price, also VAT. </br> I used remote api (Sylius) in this app and all of categories' and products that in those categories details were taken from that api with using React and Redux Toolkit. </br> Finally, a redirect to the payment form is made in the cart section. </br></br>
+
+Some of bugs will be fixed and Some adjustments will be made... </br></br>
+
+Please stay tuned for more 😉 </br></br>
+
+</p>  </strong></br>
 
 <h3> SITE VIEW </h3> </br>
 
-<h5> Will be edited... </h5>  </br>
+<h5> GIF will be added soon...  </h5>  </br>

@@ -158,6 +158,7 @@ const Cart = (props) => {
 											to="/checkout"
 											className="btn btn-primary btn-block"
 											// style={{ marginTop: "115px" }}
+											id="checkout-form"
 										>
 											Checkout
 										</Link>
