@@ -24,6 +24,8 @@ Please stay tuned for more 😉 </br></br>
 
 </p>  </strong></br>
 
+<h5> Project completed... </h5> </br>
+
 <h3> SITE VIEW </h3> </br>
 
-<h5> GIF will be added soon...  </h5>  </br>
+![](./src/Assets/screen.gif) </br>

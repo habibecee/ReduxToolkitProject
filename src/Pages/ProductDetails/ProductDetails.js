@@ -12,22 +12,32 @@ const ProductDetail = (props) => {
 	const api = useApi();
 	const [products, setProducts] = useState([]);
 	const cartState = useSelector((state) => state.cartState);
-	console.log("cartState", cartState);
+	// console.log("cartState", cartState);
 	const categoryState = useSelector((state) => state.categoryState);
-	console.log("categoryState", categoryState.categories);
+	// console.log("categoryState", categoryState.categories);
 	const dispatch = useDispatch();
 	const [productDetail, setProductDetail] = useState(null);
+	const [productPrice, setProductPrice] = useState(null);
 
 	useEffect(() => {
 		api
 			.get("shop/products/" + params.productCode)
 			.then((response) => {
-				// console.log("categorydetailRESPONSE", response);
+				console.log("categorydetailRESPONSE", response.data);
 				setProductDetail(response.data);
 			})
 			.catch((err) => {
 				console.log("ProductdetailERR", err);
 			});
+
+		api
+			.get(`shop/product-variants/${params.productCode}-variant-0`)
+			.then((response) => {
+				console.log("RESPONSE", response.data);
+
+				setProductPrice(response.data);
+			})
+			.catch((err) => console.log("CART ERROR", err));
 	}, []);
 
 	const onAddToCartClick = (event) => {
@@ -127,7 +137,8 @@ const ProductDetail = (props) => {
 													className="product-price"
 													style={{ fontSize: "38px" }}
 												>
-													$1100 <strike>$1300</strike>
+													{productPrice.price} $ {""}
+													<strike>{productPrice.originalPrice} $</strike>
 												</p>
 												<p>{productDetail.shortDescription}</p>
 

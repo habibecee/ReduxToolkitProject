@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import useApi from "../../../../Hooks/useApi";
 import { updateFullCart } from "../../../../Redux/CartSlice";
@@ -10,6 +10,18 @@ const ProductItem = (props) => {
 	// console.log("CART STATE", cartState);
 	const api = useApi();
 	const dispatch = useDispatch();
+	const [productDetail, setProductDetail] = useState(null);
+
+	useEffect(() => {
+		api
+			.get(`shop/product-variants/${props.product.code}-variant-0`)
+			.then((response) => {
+				console.log("RESPONSE", response.data);
+
+				setProductDetail(response.data);
+			})
+			.catch((err) => console.log("CART ERROR", err));
+	}, []);
 
 	const onAddToCartClick = (event) => {
 		event.preventDefault();
@@ -33,6 +45,9 @@ const ProductItem = (props) => {
 			})
 			.catch((err) => console.log("ADD TO CART ERROR", err));
 	};
+
+	// api.get(`shop/products/${props.products.code}`)
+
 	return (
 		<div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb30">
 			<div className="product-block">
@@ -55,12 +70,12 @@ const ProductItem = (props) => {
 					</h5>
 					<div className="product-meta">
 						<a href="#" className="product-price">
-							{cartState.unitPrice}
+							{productDetail?.price} $
 						</a>
 						<a href="#" className="discounted-price">
-							$1400
+							{productDetail?.originalPrice} $
 						</a>
-						<span className="offer-price">20%off</span>
+						{/* <span className="offer-price">20%off</span> */}
 					</div>
 					<div className="shopping-btn">
 						<button
